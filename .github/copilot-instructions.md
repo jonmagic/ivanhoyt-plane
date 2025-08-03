@@ -8,7 +8,7 @@ This project contains all of the code and instructions for my dad's plane and av
 │   ├─ overview.md
 │   └─ …other docs…
 ├─ devices/
-│   ├─ f405-wing/
+│   ├─ speedybee-f405-wing/
 │   │   └─ README.md       # How to flash and configure INAV/BetaFlight/ArduPilot
 │   ├─ feather-m4-can/
 │   │   ├─ README.md       # Build & deployment instructions for Arduino code
