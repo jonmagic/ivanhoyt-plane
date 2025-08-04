@@ -1,40 +1,54 @@
-# Copilot Instructions
 
-This project contains all of the code and instructions for my dad's plane and avionics. The repository is structured to facilitate easy navigation and understanding of the various components involved in the project.
+# Copilot Instructions for `ivanhoyt-plane`
 
-```
-├─ README.md               # Overview of all components and high‑level wiring
-├─ docs/                   # Architecture diagrams, wiring diagrams, CHANGELOG
-│   ├─ overview.md
-│   └─ …other docs…
-├─ devices/
-│   ├─ speedybee-f405-wing/
-│   │   └─ README.md       # How to flash and configure INAV/BetaFlight/ArduPilot
-│   ├─ feather-m4-can/
-│   │   ├─ README.md       # Build & deployment instructions for Arduino code
-│   │   └─ mav-to-can.cpp  # Custom Arduino/CircuitPython code
-│   ├─ raspberry-pi/
-│   │   ├─ README.md       # Step‑by‑step setup from bare SD card to running EFIS
-│   │   ├─ build-image.sh  # Script to build or refresh a custom Pi image
-│   │   ├─ setup.sh        # Idempotent script to install deps and configure services
-│   │   └─ config/
-│   │       ├─ fixgw/      # Your customised FIX‑Gateway configs (preferences.yaml.custom etc.)
-│   │       └─ pyefis/     # EFIS screen and instrument definitions
-│   └─ sensors/
-│       ├─ README.md       # Description and wiring of each new sensor added
-│       └─ <sensor>/       # Code and configs if sensors require microcontroller code
-│
-├─ scripts/
-│   └─ backup-pi.sh        # Creates compressed image of the Pi SD card using `dd + gzip`
-│
-└─ .github/
-    ├─ copilot‑instructions.md
-    └─ workflows/…
-```
+This repository manages avionics, wiring, and software for a custom aircraft. It is organized for modularity, reproducibility, and clarity for both hardware and software integration. Follow these project-specific guidelines to maximize productivity as an AI coding agent:
 
-When you start working on this project, ensure you:
+## 1. Architecture & Major Components
 
-1. Create small commits with clear semantic commmit messages.
-2. Use the provided scripts and documentation to set up your development environment.
-3. Follow the directory structure to maintain organization and clarity.
-4. Update the documentation as you add new features or make changes to existing components.
+- **Top-level overview:**
+    - `README.md` provides a high-level summary of all avionics, wiring, and integration points.
+    - `docs/` contains architecture diagrams, wiring diagrams, and changelogs. Use these for system context.
+- **Devices:**
+    - `devices/` contains subfolders for each major hardware component:
+        - `speedybee-f405-wing/`: Flight controller (INAV/BetaFlight/ArduPilot). See its `README.md` for firmware/config steps.
+        - `feather-m4-can/`: Custom Arduino/CircuitPython code for CAN bus bridging. `mav-to-can.cpp` is the main source file.
+        - `raspberry-pi/`: Main compute node for EFIS (Electronic Flight Instrument System) and gateway services. See below for workflows.
+
+## 2. Developer Workflows
+
+- **Raspberry Pi setup:**
+    - Use `devices/raspberry-pi/README.md` for step-by-step provisioning (from SD card to running EFIS).
+- **Firmware/MCU code:**
+    - Each device subfolder contains its own `README.md` with build/flash instructions. Follow these for hardware-specific workflows.
+- **Configuration:**
+    - `devices/raspberry-pi/config/fixgw/`: Custom FIX-Gateway configs (e.g., `preferences.yaml.custom`).
+    - `devices/raspberry-pi/config/pyefis/`: EFIS screen and instrument definitions.
+
+## 3. Project Conventions & Patterns
+
+- **Documentation-first:**
+    - All new features or hardware integrations must be documented in the relevant `README.md` or `docs/` file.
+- **Small, semantic commits:**
+    - Use clear, descriptive commit messages for traceability (e.g., `feat: add OAT sensor integration`).
+- **Idempotent scripts:**
+    - All setup scripts (`setup.sh`, etc.) are designed to be safe to re-run.
+- **Directory structure:**
+    - Follow the established folder layout for new devices, sensors, or configs. Place all code and docs in the appropriate subfolder.
+
+## 4. Integration & Data Flow
+
+- **CAN bus:**
+    - `feather-m4-can` bridges MAVLink and CAN for sensor/actuator communication.
+- **FIX-Gateway:**
+    - Configured via YAML in `devices/raspberry-pi/config/fixgw/`.
+- **EFIS:**
+    - Screen layouts and instruments defined in `devices/raspberry-pi/config/pyefis/config/screens/`.
+
+## 5. External Dependencies
+
+- **Firmware tools:** INAV, BetaFlight, ArduPilot, Arduino IDE, CircuitPython.
+- **Raspberry Pi:** Raspbian OS, custom scripts, Python for EFIS.
+
+---
+
+**Always update documentation and configs when making changes.**
