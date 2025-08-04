@@ -14,6 +14,7 @@ This repository manages the avionics, wiring, and software for a custom experime
 	- `feather-m4-can/` — Custom Arduino/CircuitPython code for CAN bus bridging. See its `README.md` for build and integration details.
 	- `raspberry-pi/` — Main compute node for EFIS and gateway services. See its `README.md` for setup and workflows.
 - `backups/` — SD card or firmware image backups.
+- [`docs/`](docs/) — Project guides, integration instructions, and architecture documentation.
 
 ## Getting Started
 
@@ -21,3 +22,4 @@ This repository manages the avionics, wiring, and software for a custom experime
 2. **See the `README.md` in each device subfolder** (under `devices/`) for hardware-specific setup, build, and configuration instructions.
     **For custom configuration** (e.g., EFIS screens, gateway YAML), see the relevant subfolders under `devices/raspberry-pi/config/`.
 3. **For project conventions, integration patterns, and best practices,** see [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
+4. **See the [`docs/`](docs/) folder** for detailed guides, integration instructions, and architecture documentation (e.g., adding new CAN-FIX inputs).
