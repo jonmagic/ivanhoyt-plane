@@ -1,0 +1,16 @@
+# Make changes to includes and enabled in this file.
+# see preferences.yaml for a list of options
+
+# IF you need a custom config file, make one and change the filename here:
+includes:
+  QUORUM_CONFIG: connections/quorum.yaml
+
+
+# This section is used to turn things on or off
+enabled:
+  AUTO_START: true
+  CANFIX: true
+  QUORUM: false
+  DEMO: false
+  STRATUX: true
+
